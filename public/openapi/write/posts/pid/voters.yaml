@@ -36,4 +36,14 @@ get:
                     type: array
                   downvoters:
                     type: array
+                  userGroups:
+                    type: array
+                  # used these to show edit changes in the Network page of devtool
+                  userData:
+                    type: array
+                  groupData:
+                    type: array
+                  enableEndorse:
+                    type: boolean
+                    
 

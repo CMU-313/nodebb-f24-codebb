@@ -335,6 +335,30 @@ postsAPI.getVoters = async function (caller, data) {
 		user.getUsersFields(downvoteUids, ['username', 'userslug', 'picture']),
 	]);
 
+	// ===========================
+	// let groupNames = await db.getSortedSetRevRange(set, 0, -1);
+	// groupNames = groupNames[0];
+	console.log("all groups:", upvoters);
+
+	let userGroups;
+	userGroups = await groups.getUserGroups ([upvoteUids[0]])
+
+	const [userData, groupData] = await Promise.all([
+		user.getUsersData(upvoteUids),
+		groups.getUserGroupsFromSet('groups:createtime', upvoteUids),
+	]);
+
+	// inspired by Victor's code 
+	let enableEndorse = false; 
+
+	for (const user of userData) {
+		const groupfields = await groups.getGroupsFields(user.groupTitleArray, ['userTitleEnabled']);
+		if (groupfields[0]) {
+			enableEndorse = true;
+		}
+	}
+	// ===========================
+
 	return {
 		upvoteCount: upvoters.length,
 		downvoteCount: downvoters.length,
@@ -342,6 +366,10 @@ postsAPI.getVoters = async function (caller, data) {
 		showDownvotes: showDownvotes,
 		upvoters: upvoters,
 		downvoters: downvoters,
+		userGroups: userGroups,
+		userData: userData,
+		groupData: groupData,
+		enableEndorse: enableEndorse // inspired by Victor's code 
 	};
 };
 

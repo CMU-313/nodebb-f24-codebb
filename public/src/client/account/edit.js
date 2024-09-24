@@ -159,6 +159,7 @@ define('forum/account/edit', [
 				$('[component="group/badge/list"] [component="group/toggle/show"]').removeClass('hidden');
 				$('[component="group/badge/list"] [component="group/toggle/hide"]').addClass('hidden');
 				$('[component="group/badge/list"] [component="group/badge/item"]').attr('data-selected', 'false');
+				console.log("goodmorning 240921");
 			}
 			const groupEl = $(this).parents('[component="group/badge/item"]');
 			groupEl.attr('data-selected', 'true');

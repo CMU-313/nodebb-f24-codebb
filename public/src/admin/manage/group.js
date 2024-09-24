@@ -98,7 +98,13 @@ define('admin/manage/group', [
 			});
 		});
 
+		$('#group-userTitleEnabled').on('change', function() {
+			console.log("test - adjusting show badge settings");
+		});
+		
 		$('#save').on('click', function () {
+			console.log("test - save admin changes on group settings");
+			
 			api.put(`/groups/${slugify(groupName)}`, {
 				name: $('#change-group-name').val(),
 				userTitle: changeGroupUserTitle.val(),
