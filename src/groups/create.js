@@ -34,6 +34,7 @@ module.exports = function (Groups) {
 			createtime: timestamp,
 			userTitle: data.userTitle || data.name,
 			userTitleEnabled: parseInt(data.userTitleEnabled, 10) === 1 ? 1 : 0,
+			endorseEnabled: parseInt(data.endorseEnabled, 10) === 1 ? 1 : 0,
 			description: data.description || '',
 			memberCount: memberCount,
 			hidden: isHidden ? 1 : 0,

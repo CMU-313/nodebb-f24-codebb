@@ -10,7 +10,7 @@ const translator = require('../translator');
 
 const intFields = [
 	'createtime', 'memberCount', 'hidden', 'system', 'private',
-	'userTitleEnabled', 'disableJoinRequests', 'disableLeave',
+	'userTitleEnabled', 'disableJoinRequests', 'disableLeave', 'endorseEnabled'
 ];
 
 module.exports = function (Groups) {
@@ -71,6 +71,7 @@ function modifyGroup(group, fields) {
 
 		escapeGroupData(group);
 		group.userTitleEnabled = ([null, undefined].includes(group.userTitleEnabled)) ? 1 : group.userTitleEnabled;
+		group.endorseEnabled = ([null, undefined].includes(group.endorseEnabled)) ? 1 : group.endorseEnabled;
 		group.labelColor = validator.escape(String(group.labelColor || '#000000'));
 		group.textColor = validator.escape(String(group.textColor || '#ffffff'));
 		group.icon = validator.escape(String(group.icon || ''));

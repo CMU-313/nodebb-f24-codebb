@@ -49,6 +49,7 @@
 	"details.change-text-colour": "Change Text Colour",
 	"details.badge-text": "Badge Text",
 	"details.userTitleEnabled": "Show Badge",
+	"details.endorseEnabled": "Allow Endorse",
 	"details.private-help": "If enabled, joining of groups requires approval from a group owner",
 	"details.hidden": "Hidden",
 	"details.hidden-help": "If enabled, this group will not be found in the groups listing, and users will have to be invited manually",

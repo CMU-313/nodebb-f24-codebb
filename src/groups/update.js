@@ -26,7 +26,7 @@ module.exports = function (Groups) {
 
 		// Cast some values as bool (if not boolean already)
 		// 'true' and '1' = true, everything else false
-		['userTitleEnabled', 'private', 'hidden', 'disableJoinRequests', 'disableLeave'].forEach((prop) => {
+		['userTitleEnabled', 'private', 'hidden', 'disableJoinRequests', 'disableLeave', 'endorseEnabled'].forEach((prop) => {
 			if (values.hasOwnProperty(prop) && typeof values[prop] !== 'boolean') {
 				values[prop] = values[prop] === 'true' || parseInt(values[prop], 10) === 1;
 			}
@@ -45,6 +45,10 @@ module.exports = function (Groups) {
 
 		if (values.hasOwnProperty('userTitleEnabled')) {
 			payload.userTitleEnabled = values.userTitleEnabled ? '1' : '0';
+		}
+
+		if (values.hasOwnProperty('endorseEnabled')) {
+			payload.endorseEnabled = values.endorseEnabled ? '1' : '0';
 		}
 
 		if (values.hasOwnProperty('hidden')) {
