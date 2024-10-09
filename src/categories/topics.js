@@ -9,6 +9,7 @@ const user = require('../user');
 const notifications = require('../notifications');
 const translator = require('../translator');
 const batch = require('../batch');
+const sanitizeHtml = require('sanitize-html');
 
 module.exports = function (Categories) {
 	Categories.getCategoryTopics = async function (data) {
@@ -16,6 +17,16 @@ module.exports = function (Categories) {
 		const tids = await Categories.getTopicIds(results);
 		let topicsData = await topics.getTopicsByTids(tids, data.uid);
 		topicsData = await user.blocks.filter(data.uid, topicsData);
+			
+		// Add actual post content to the topicsData to show search previews
+		const mainPosts = await topics.getMainPosts(tids, data.uid);
+		topicsData.forEach((topic, idx) => {
+			// Clean all html, allowing no tags or attributes
+			topic.content = sanitizeHtml(mainPosts[idx].content, {
+				allowedTags: [],
+				allowedAttributes: {}
+			});
+		});
 
 		if (!topicsData.length) {
 			return { topics: [], uid: data.uid };
