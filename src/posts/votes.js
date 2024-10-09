@@ -8,6 +8,7 @@ const topics = require('../topics');
 const plugins = require('../plugins');
 const privileges = require('../privileges');
 const translator = require('../translator');
+const groups = require('../groups');
 
 module.exports = function (Posts) {
 	const votesInProgress = {};
@@ -83,14 +84,21 @@ module.exports = function (Posts) {
 	Posts.getVoteStatusByPostIDs = async function (pids, uid) {
 		if (parseInt(uid, 10) <= 0) {
 			const data = pids.map(() => false);
-			return { upvotes: data, downvotes: data };
+			return { upvotes: data, downvotes: data, showendorse: data };
 		}
+		const endorsements = await Promise.all(pids.map(async (pid) => {
+			const upvoteUids = await db.getSetMembers(`pid:${pid}:upvote`);
+			const uidPromises = upvoteUids.map(uid => groups.isMemberOfGroups(uid, ['administrators']));
+			const results = await Promise.all(uidPromises);
+			return results.some(isAdmin => isAdmin[0]);
+		}));
 		const upvoteSets = pids.map(pid => `pid:${pid}:upvote`);
 		const downvoteSets = pids.map(pid => `pid:${pid}:downvote`);
 		const data = await db.isMemberOfSets(upvoteSets.concat(downvoteSets), uid);
 		return {
 			upvotes: data.slice(0, pids.length),
 			downvotes: data.slice(pids.length, pids.length * 2),
+			showendorse: endorsements,
 		};
 	};
 
