@@ -2526,7 +2526,7 @@ describe('Topic\'s', () => {
 
 			// Check if the post was upvoted
 			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
-			assert.strictEqual(voteData.showendorse[0], true, 'Post should be upvoted by admin');
+			assert.strictEqual(voteData.showendorse[0], true, 'Post should be endorsed by admin');
 		});
 
 		it('should remove endorsement when admin removes upvote', async () => {
@@ -2535,7 +2535,7 @@ describe('Topic\'s', () => {
 
 			// Check if the upvote and endorsement were removed
 			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
-			assert.strictEqual(voteData.showendorse[0], false, 'Admin upvote should be removed');
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be endorsed by admin');
 		});
 
 		it('should not endorse the post when a non-admin upvotes', async () => {
@@ -2547,7 +2547,19 @@ describe('Topic\'s', () => {
 
 			// Check if the post was upvoted
 			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
-			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be upvoted by non-admin');
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be endorsed by non-admin');
+		});
+
+		it('should not endorse the post when a non-admin removes an upvote', async () => {
+			// Create a new user
+			const fooUid2 = await User.create({ username: 'foo2' });
+			// Random user upovtes the post
+			await posts.downvote(pid, fooUid2);
+
+
+			// Check if post was not upovted
+			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be endorsed by non-admin');
 		});
 	});
 });
