@@ -2504,6 +2504,64 @@ describe('Topic\'s', () => {
 			assert(!score);
 		});
 	});
+
+	describe('Endorsing', () => {
+		let tid;
+		let pid;
+		before(async () => {
+			// Create a new topic and post
+			const result = await topics.post({
+				uid: fooUid,
+				title: 'Test Topic for Upvoting',
+				content: 'This is a topic to test upvoting functionality',
+				cid: topic.categoryId,
+			});
+			tid = result.topicData.tid;
+			pid = result.postData.pid;
+		});
+
+		it('should endorse the post when an admin upvotes', async () => {
+			// Admin upvotes the post
+			await posts.upvote(pid, adminUid);
+
+			// Check if the post was upvoted
+			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
+			assert.strictEqual(voteData.showendorse[0], true, 'Post should be endorsed by admin');
+		});
+
+		it('should remove endorsement when admin removes upvote', async () => {
+			// Admin removes upvote
+			await posts.downvote(pid, adminUid);
+
+			// Check if the upvote and endorsement were removed
+			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be endorsed by admin');
+		});
+
+		it('should not endorse the post when a non-admin upvotes', async () => {
+			// Create a new user
+			const fooUid2 = await User.create({ username: 'foo2' });
+			// Random user upovtes the post
+			await posts.upvote(pid, fooUid2);
+
+
+			// Check if the post was upvoted
+			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be endorsed by non-admin');
+		});
+
+		it('should not endorse the post when a non-admin removes an upvote', async () => {
+			// Create a new user
+			const fooUid2 = await User.create({ username: 'foo2' });
+			// Random user upovtes the post
+			await posts.downvote(pid, fooUid2);
+
+
+			// Check if post was not upovted
+			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be endorsed by non-admin');
+		});
+	});
 });
 
 describe('Topics\'', async () => {
