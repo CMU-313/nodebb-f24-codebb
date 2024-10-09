@@ -2505,10 +2505,12 @@ describe('Topic\'s', () => {
 		});
 	});
 
-	describe('Upvoting', () => {
+	describe('Endorsing', () => {
 		let tid;
 		let pid;
 		before(async () => {
+			// Create a new user
+			fooUid2 = await User.create({ username: 'foo' });
 			// Create a new topic and post
 			const result = await topics.post({
 				uid: fooUid,
@@ -2536,6 +2538,16 @@ describe('Topic\'s', () => {
 			// Check if the upvote and endorsement were removed
 			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
 			assert.strictEqual(voteData.showendorse[0], false, 'Admin upvote should be removed');
+		});
+		
+		it('should not endorse the post when a non-admin upvotes', async () => {
+			// Random user upovtes the post
+			await posts.upvote(pid, fooUid2);
+
+
+			// Check if the post was upvoted
+			const voteData = await posts.getVoteStatusByPostIDs([pid], fooUid);
+			assert.strictEqual(voteData.showendorse[0], false, 'Post should not be upvoted by non-admin');
 		});
 	});
 });
