@@ -19,6 +19,8 @@ GroupFullObject:
       description: Same as userTitle but with translation tokens escaped, used to display raw userTitle in group management
     userTitleEnabled:
       type: number
+    endorseEnabled:
+      type: number
     description:
       type: string
       description: The group description
@@ -169,6 +171,8 @@ GroupDataObject:
       type: number
       description: Same as userTitle but with translation tokens escaped, used to display raw userTitle in group management
     userTitleEnabled:
+      type: number
+    endorseEnabled:
       type: number
     description:
       type: string

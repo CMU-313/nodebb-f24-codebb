@@ -42,6 +42,8 @@ get:
                           type: number
                         userTitleEnabled:
                           type: number
+                        endorseEnabled:
+                          type: number
                         disableJoinRequests:
                           type: number
                         disableLeave:

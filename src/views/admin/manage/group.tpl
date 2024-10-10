@@ -85,6 +85,13 @@
 
 				<div class="mb-3">
 					<div class="form-check form-switch">
+						<input class="form-check-input" id="group-endorseEnabled" name="endorseEnabled" data-property type="checkbox"{{{ if group.endorseEnabled }}} checked{{{ end }}}>
+						<label class="form-check-label" for="group-endorseEnabled">Allow Endorse</label>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check form-switch">
 						<input class="form-check-input" id="group-private" name="private" data-property type="checkbox"{{{ if group.private }}} checked{{{ end }}}>
 						<label class="form-check-label" for="group-private">[[groups:details.private]]</label>
 					</div>

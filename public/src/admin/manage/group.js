@@ -107,6 +107,7 @@ define('admin/manage/group', [
 				labelColor: changeGroupLabelColor.val(),
 				textColor: changeGroupTextColor.val(),
 				userTitleEnabled: $('#group-userTitleEnabled').is(':checked'),
+				endorseEnabled: $('#group-endorseEnabled').is(':checked'),
 				private: $('#group-private').is(':checked'),
 				hidden: $('#group-hidden').is(':checked'),
 				memberPostCids: $('#memberPostCids').val(),

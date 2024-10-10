@@ -50,6 +50,8 @@ get:
                           type: string
                         userTitleEnabled:
                           type: number
+                        endorseEnabled:
+                          type: number
                         disableJoinRequests:
                           type: number
                         disableLeave:
@@ -88,6 +90,7 @@ get:
                         - cover:url
                         - cover:position
                         - userTitleEnabled
+                        - endorseEnabled
                         - disableJoinRequests
                         - disableLeave
                         - nameEncoded
