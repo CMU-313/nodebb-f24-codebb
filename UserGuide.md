@@ -18,3 +18,11 @@ Endorse Feature:
   action in order to see changes.
 
 Search Feature:
+- To use the search feature you must be logged in
+- Once logged in, go under any category (Announcements, General Discussion 
+ Comments, Blog) and find the search bar next to the New Topic Button in the tool bar.
+- Enter a query: type in any keyword related to post or topic you are
+ looking for. Only posts with the keyword in it will be displayed. If the  keyword does not exist in any content or title, a message No topics match the search term ___ will be displayed.
+- Clicking on results will take you directly to post.
+- To user test this feature try searching for a common keyword and ensure
+ relevant posts show up. You can also create a new post and search for a term that exists in the post to verify. Search for a word that does not exist and ensure "No topics match the search term" message displays.
