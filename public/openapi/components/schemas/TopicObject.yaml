@@ -176,6 +176,10 @@ TopicObject:
         tid:
           type: number
           description: A topic identifier
+        content:
+          type: string
+          nullable: true
+          description: Content of the original topic post for showing search previews.
         thumb:
           type: string
         pinExpiry:

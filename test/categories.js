@@ -136,6 +136,41 @@ describe('Categories', () => {
 				done();
 			});
 		});
+
+		// Tests for adding content to the topics. Ensure that the content field exists.
+		it('should return topics that have a content field', (done) => {
+			Categories.getCategoryTopics({
+				cid: categoryObj.cid,
+				start: 0,
+				stop: 10,
+				uid: 0,
+				sort: 'oldest_to_newest',
+			}, (err, result) => {
+				assert.equal(err, null);
+				assert(Array.isArray(result.topics));
+				assert(result.topics.every(topic => topic instanceof Object && topic.hasOwnProperty('content')));
+
+				done();
+			});
+		});
+
+		// Tests for adding content to the topics. Ensure that the content field has no html tags.
+		it('should return topics that have a content field with no html tags', (done) => {
+			Categories.getCategoryTopics({
+				cid: categoryObj.cid,
+				start: 0,
+				stop: 10,
+				uid: 0,
+				sort: 'oldest_to_newest',
+			}, (err, result) => {
+				assert.equal(err, null);
+				assert(Array.isArray(result.topics));
+				// Make sure there are no tag brackets in the content
+				assert(result.topics.every(topic => topic instanceof Object && !/<.*?>/.test(topic.content)));
+
+				done();
+			});
+		});
 	});
 
 	describe('Categories.moveRecentReplies', () => {

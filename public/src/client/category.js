@@ -125,26 +125,45 @@ define('forum/category', [
 
 		searchEl.on('keyup', function () {
 			const searchTerm = searchEl.val().toLowerCase();
+
 			topicEls.each(function () {
 				const topicEl = $(this);
 				const titleEl = topicEl.find('[component="topic/header"] a');
 				const title = titleEl.text().toLowerCase();
-				const isMatch = title.indexOf(searchTerm) !== -1;
-				console.log(`Title: ${title}\n ${isMatch ? 'Hidden' : 'Visible'}\n`);
+				const titleMatch = title.indexOf(searchTerm) !== -1;
+				const contentEl = topicEl.find('[component="topic/hidden-content"]');
+				const content = contentEl.text().toLowerCase();
+				const contentIdx = content.indexOf(searchTerm);
+				const hasMatch = (titleMatch || (contentIdx !== -1));
+				const searchContentEl = topicEl.find('[component="topic/search-content"]');
 
-				topicEl.toggleClass('hidden', !isMatch);
+				// Hide topics that don't match the search term in their title or their content
+				topicEl.toggleClass('hidden', !hasMatch);
+
+				// Use topic/search-content placeholder to display the 100 character preview around the search term.
+				// Only do this if the search is more than 2 characters
+				if (contentIdx !== -1 && searchTerm.length >= 2) {
+					const start = Math.max(0, contentIdx - 50);
+					const end = Math.min(content.length, contentIdx + searchTerm.length + 50);
+					const snippet = content.substring(start, end);
+
+					// Make the search term come out bold in the search preview
+					const highlightedSnippet = snippet.replace(searchTerm, `<strong>${searchTerm}</strong>`);
+					searchContentEl.html(`...${highlightedSnippet}...`);
+				} else {
+					searchContentEl.html('');
+				}
 			});
 
+			// Show the alert for no matches if there are no matched topics, otherwise keep it hidden.
 			const visibleTopics = topicEls.filter(':not(.hidden)');
+			const alertComponent = $('[component="category/topic/no-matches"]');
 			if (visibleTopics.length === 0) {
-				if ($('[component="category/topic/no-matches"]').length === 0) {
-					$(`<div component="category/topic/no-matches" class="alert alert-info">No topics match the search term ${searchTerm}.</div>`)
-						.insertAfter('[component="category/topic"]:last');
-				} else {
-					$('[component="category/topic/no-matches"]').removeClass('hidden');
-				}
+				alertComponent.removeClass('hidden');
+				alertComponent.html(`No topics match the search term ${searchTerm}.`);
 			} else {
-				$('[component="category/topic/no-matches"]').addClass('hidden');
+				alertComponent.addClass('hidden');
+				alertComponent.html('');
 			}
 		});
 	}
