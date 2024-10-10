@@ -1,6 +1,10 @@
 # USER GUIDE FOR NEW FEATURES:
 
 ### Endorse Feature:
+
+Video Demo:
+[Endorse Demo](public/EndorseVideo.mp4)
+
 - To use the endorse you must be logged in as an admin user
 - Once logged in as an admin go to a topic and find a post
 - On the post click on the upvote button
@@ -16,6 +20,14 @@
   for admins.  Also try removing the upvote as an admin to make sure the 
   message goes away.  Note that the page must be refreshed after the upvote
   action in order to see changes.
+
+
+### Endorse Testing:
+- Testing for endorse can be found in [test/topics.js](test/topics.js#L2508) 
+- These tests ensure that when admins upvote the boolean showendorse is set to true 
+  and if they are not an admin then showendorse is kept as false
+- These tests are sufficient as they cover the possible scnearios of both admin and 
+  non-admin users upvoting.
 
 ### Search Feature:
 
