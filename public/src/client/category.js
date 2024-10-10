@@ -137,6 +137,7 @@ define('forum/category', [
 				const hasMatch = (titleMatch || (contentIdx !== -1));
 				const searchContentEl = topicEl.find('[component="topic/search-content"]');
 
+				// Hide topics that don't match the search term in their title or their content
 				topicEl.toggleClass('hidden', !hasMatch);
 
 				// Use topic/search-content placeholder to display the 100 character preview around the search term.
@@ -146,7 +147,8 @@ define('forum/category', [
 					const end = Math.min(content.length, contentIdx + searchTerm.length + 50);
 					const snippet = content.substring(start, end);
 
-					const highlightedSnippet = snippet.replace(new RegExp(`(${searchTerm})`, 'gi'), '<strong class="highlight">$1</strong>');
+					// Make the search term come out bold in the search preview
+					const highlightedSnippet = snippet.replace(searchTerm, `<strong>${searchTerm}</strong>`);
 					searchContentEl.html(`...${highlightedSnippet}...`);
 				} else {
 					searchContentEl.html('');
