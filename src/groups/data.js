@@ -10,7 +10,7 @@ const translator = require('../translator');
 
 const intFields = [
 	'createtime', 'memberCount', 'hidden', 'system', 'private',
-	'userTitleEnabled', 'disableJoinRequests', 'disableLeave', 'endorseEnabled'
+	'userTitleEnabled', 'disableJoinRequests', 'disableLeave', 'endorseEnabled',
 ];
 
 module.exports = function (Groups) {
