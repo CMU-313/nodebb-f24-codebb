@@ -8,7 +8,7 @@ Video Demo:
 - To use the endorse you must be logged in as an admin user
 - Once logged in as an admin select a group and edit its setting
 - In the admin group settings page, toggle on the “Allow Endorse” checkbox and save this change
-- go to a topic and find a post
+- Go to a topic and find a post
 - On the post click on the upvote button
 - Refresh the page and there will be a message next to the timestamp stating 
   that the post has been endorsed by an instructor and there will also be a 
