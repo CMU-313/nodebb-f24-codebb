@@ -133,13 +133,13 @@ define('forum/category', [
 				const titleMatch = title.indexOf(searchTerm) !== -1;
 				const contentEl = topicEl.find('[component="topic/hidden-content"]');
 				const content = contentEl.text().toLowerCase();
-				const contentIdx = content.indexOf(searchTerm)
-				const hasMatch = (titleMatch || (contentIdx !== -1))
+				const contentIdx = content.indexOf(searchTerm);
+				const hasMatch = (titleMatch || (contentIdx !== -1));
 				const searchContentEl = topicEl.find('[component="topic/search-content"]');
 
 				topicEl.toggleClass('hidden', !hasMatch);
 
-				// Use topic/search-content placeholder to display the 100 character preview around the search term. 
+				// Use topic/search-content placeholder to display the 100 character preview around the search term.
 				// Only do this if the search is more than 2 characters
 				if (contentIdx !== -1 && searchTerm.length >= 2) {
 					const start = Math.max(0, contentIdx - 50);
@@ -149,19 +149,19 @@ define('forum/category', [
 					const highlightedSnippet = snippet.replace(new RegExp(`(${searchTerm})`, 'gi'), '<strong class="highlight">$1</strong>');
 					searchContentEl.html(`...${highlightedSnippet}...`);
 				} else {
-					searchContentEl.html("");
+					searchContentEl.html('');
 				}
 			});
 
 			// Show the alert for no matches if there are no matched topics, otherwise keep it hidden.
 			const visibleTopics = topicEls.filter(':not(.hidden)');
-			const alertComponent = $('[component="category/topic/no-matches"]')
+			const alertComponent = $('[component="category/topic/no-matches"]');
 			if (visibleTopics.length === 0) {
 				alertComponent.removeClass('hidden');
 				alertComponent.html(`No topics match the search term ${searchTerm}.`);
 			} else {
 				alertComponent.addClass('hidden');
-				alertComponent.html("");
+				alertComponent.html('');
 			}
 		});
 	}
