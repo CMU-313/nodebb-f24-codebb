@@ -32,6 +32,10 @@ jobs:
         with:
           node-version: '20.17.0'
 
+      - name: Install frontend repo
+        run: |
+          npm install https://github.com/CMU-313/nodebb-frontend-f24-codebb.git
+
       - name: Set up NodeBB
         run: |
           ./nodebb setup '{"url":"nodebb-codebb.azurewebsites.net:443",
