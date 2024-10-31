@@ -1,9 +1,12 @@
 {
-    "esversion": 11,
+    "esversion": 9,
     "strict": "global",
     "node": true,
     "globals": {
         "fetch": true,
         "AbortSignal": true
-    }
+    },
+    "-W018": false,
+    "-W116": false,
+    "-W083": false
 }
