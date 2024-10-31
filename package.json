@@ -17,7 +17,7 @@
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage",
         "build": "babel src/ -d lib/",
         "prepublish": "yarn run build",
-        "flow": "flow"
+        "flow": "mkdir -p logs; flow | tee logs/flow.log"
     },
     "nyc": {
         "exclude": [
