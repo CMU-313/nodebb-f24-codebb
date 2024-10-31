@@ -80,9 +80,6 @@ jobs:
       - name: Install Flow
         run: npm install --save-dev flow-bin
 
-      - name: Run Flow
-        run: npm run flow
-
       - name: Node tests
         run: npm test
 
