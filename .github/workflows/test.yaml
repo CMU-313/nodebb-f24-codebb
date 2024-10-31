@@ -77,9 +77,11 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Install Flow
+        run: npm install --save-dev flow-bin
+
       - name: Run Flow
-        run: |
-          npm run flow; test $? -eq 0 || exit 1
+        run: npm run flow
 
       - name: Node tests
         run: npm test
