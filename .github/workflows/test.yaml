@@ -79,7 +79,7 @@ jobs:
 
       - name: Run Flow
         run: |
-          npm run flow
+          npm run flow; test $? -eq 0 || exit 1
 
       - name: Node tests
         run: npm test
