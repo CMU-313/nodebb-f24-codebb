@@ -1,6 +1,6 @@
 
 'use strict';
-
+/*jshint -W018 */
 const async = require('async');
 const validator = require('validator');
 const _ = require('lodash');

@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 /**
  * v4 note — all methods here are deprecated and can be removed except for:
  *   - SocketModules.chats.(enter|leave)(Public)?  => related to socket.io rooms

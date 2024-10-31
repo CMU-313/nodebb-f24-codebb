@@ -1,6 +1,6 @@
 
 'use strict';
-
+/*jshint -W018 */
 const fs = require('fs');
 const path = require('path');
 const winston = require('winston');

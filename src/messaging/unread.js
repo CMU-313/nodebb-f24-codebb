@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const db = require('../database');
 const io = require('../socket.io');
 

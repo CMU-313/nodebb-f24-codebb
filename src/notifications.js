@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 
 const async = require('async');
 const winston = require('winston');

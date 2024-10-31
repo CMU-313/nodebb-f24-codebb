@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const nconf = require('nconf');
 const Redis = require('ioredis');
 const winston = require('winston');

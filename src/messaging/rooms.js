@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const _ = require('lodash');
 const validator = require('validator');
 const winston = require('winston');

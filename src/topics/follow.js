@@ -1,6 +1,6 @@
 
 'use strict';
-
+/*jshint -W018 */
 const db = require('../database');
 const notifications = require('../notifications');
 const privileges = require('../privileges');

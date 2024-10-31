@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const db = require('../database');
 const topics = require('../topics');
 const plugins = require('../plugins');

@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const path = require('path');
 const fs = require('fs').promises;
 

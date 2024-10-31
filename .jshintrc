@@ -1,0 +1,9 @@
+{
+    "esversion": 11,
+    "strict": "global",
+    "node": true,
+    "globals": {
+        "fetch": true,
+        "AbortSignal": true
+    }
+}

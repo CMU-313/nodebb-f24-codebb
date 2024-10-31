@@ -1,6 +1,6 @@
 
 'use strict';
-
+/*jshint -W018 */
 const nconf = require('nconf');
 const winston = require('winston');
 

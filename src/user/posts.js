@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const db = require('../database');
 const meta = require('../meta');
 const privileges = require('../privileges');

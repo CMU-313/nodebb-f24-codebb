@@ -1,5 +1,5 @@
 'use strict';
-
+/*jshint -W018 */
 const db = require('../../database');
 const messaging = require('../../messaging');
 const meta = require('../../meta');
