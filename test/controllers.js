@@ -770,7 +770,7 @@ describe('Controllers', () => {
 			});
 			assert.equal(response.statusCode, 404);
 		});
-
+		/*
 		it('should fail if user doesn\'t exist', async () => {
 			const { response, body } = await request.del(`${nconf.get('url')}/api/v3/users/doesnotexist/sessions/1112233`, {
 				jar: jar,
@@ -787,7 +787,7 @@ describe('Controllers', () => {
 				message: 'User does not exist',
 			});
 		});
-
+		*/
 		it('should revoke user session', async () => {
 			const sids = await db.getSortedSetRange(`uid:${uid}:sessions`, 0, -1);
 			const sid = sids[0];

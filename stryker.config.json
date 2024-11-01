@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
   "mutate": [ "./src/**/*.js", "./public/src/**/*" ],
   "ignorePatterns": ["node_modules/**", "build/**", "!require-main.js", ".stryker-tmp/**"],
-  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information.",
+  "_comment": "This config was initially generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information.",
   "packageManager": "npm",
   "reporters": [
     "html",
@@ -15,3 +15,4 @@
   "coverageAnalysis": "perTest",
   "allowEmpty": true
 }
+
