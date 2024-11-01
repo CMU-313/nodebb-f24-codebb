@@ -77,6 +77,9 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Run JSHint
+        run: npx jshint src
+
       - name: Node tests
         run: npm test
 

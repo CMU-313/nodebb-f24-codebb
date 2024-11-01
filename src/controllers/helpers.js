@@ -485,6 +485,7 @@ helpers.formatApiResponse = async (statusCode, res, payload) => {
 			case '[[error:user-banned]]':
 				Object.assign(response, await generateBannedResponse(res));
 				// intentional fall through
+				/* falls through */
 
 			case '[[error:no-privileges]]':
 				statusCode = 403;
