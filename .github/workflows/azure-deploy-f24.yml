@@ -47,6 +47,10 @@ jobs:
       - name: Install frontend repo
         run: |
           npm install https://github.com/CMU-313/nodebb-frontend-f24-codebb.git
+
+      - name: Rebuild nodebb
+        run: |
+          ./nodebb build
           
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
