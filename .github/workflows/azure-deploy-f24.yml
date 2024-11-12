@@ -54,5 +54,5 @@ jobs:
         with:
           app-name: 'nodebb-codebb'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0ABE30681CE7403C8CCA61A931AD8DAD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AC8935D1C14C4AFD9649973E5B4B2370 }}
           package: .
