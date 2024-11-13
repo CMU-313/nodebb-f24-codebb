@@ -22,10 +22,10 @@ module.exports = function (Categories) {
 		const mainPosts = await topics.getMainPosts(tids, data.uid);
 		topicsData.forEach((topic, idx) => {
 			if (!mainPosts || !mainPosts[idx] || !mainPosts[idx].content) {
-				topic.content = "";
+				topic.content = '';
 			} else {
 				// Clean all html, allowing no tags or attributes
-				topic.content = sanitizeHtml(mainPosts[idx].content || "", {
+				topic.content = sanitizeHtml(mainPosts[idx].content || '', {
 					allowedTags: [],
 					allowedAttributes: {},
 				});
