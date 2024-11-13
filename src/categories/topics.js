@@ -21,11 +21,15 @@ module.exports = function (Categories) {
 		// Add actual post content to the topicsData to show search previews
 		const mainPosts = await topics.getMainPosts(tids, data.uid);
 		topicsData.forEach((topic, idx) => {
-			// Clean all html, allowing no tags or attributes
-			topic.content = sanitizeHtml(mainPosts[idx].content, {
-				allowedTags: [],
-				allowedAttributes: {},
-			});
+			if (!mainPosts || !mainPosts[idx] || !mainPosts[idx].content) {
+				topic.content = "";
+			} else {
+				// Clean all html, allowing no tags or attributes
+				topic.content = sanitizeHtml(mainPosts[idx].content || "", {
+					allowedTags: [],
+					allowedAttributes: {},
+				});
+			}
 		});
 
 		if (!topicsData.length) {
