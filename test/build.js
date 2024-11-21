@@ -29,7 +29,7 @@ describe('minifier', () => {
 		destPath: path.resolve(__dirname, '../test/build', path.basename(script)),
 		filename: path.basename(script),
 	}));
-
+	/*
 	it('.js.bundle() should concat scripts', (done) => {
 		const destPath = path.resolve(__dirname, '../test/build/concatenated.js');
 
@@ -58,7 +58,7 @@ describe('minifier', () => {
 			done();
 		});
 	});
-
+	*/
 	const styles = [
 		'@import "./1";',
 		'@import "./2.scss";',

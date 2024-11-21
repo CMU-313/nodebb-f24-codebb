@@ -8,6 +8,7 @@
         "type": "git",
         "url": "https://github.com/NodeBB/NodeBB/"
     },
+    "type": "module",
     "main": "app.js",
     "scripts": {
         "start": "node loader.js",

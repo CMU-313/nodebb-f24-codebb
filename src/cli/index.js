@@ -111,7 +111,7 @@ prestart.versionCheck();
 
 if (!configExists && process.argv[2] !== 'setup') {
 	require('./setup').webInstall();
-	return;
+	// return;
 }
 
 if (configExists) {
